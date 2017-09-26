@@ -39,8 +39,7 @@ public class SplitActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-
-        if (requestCode == REQUEST) {
+        if (requestCode == REQUEST && !isInMultiWindowMode()) {
             startService(new Intent(this, SplitScreenService.class));
         }
     }
@@ -62,7 +61,7 @@ public class SplitActivity extends AppCompatActivity {
         super.onMultiWindowModeChanged(isInMultiWindowMode);
 
         if (isInMultiWindowMode) {
-            Log.d("SplitActivity", "multi, start activities");
+            Log.d("SplitActivity", "onMultiWindowModeChanged: multi, start activities");
             launchActivities();
         }
     }
